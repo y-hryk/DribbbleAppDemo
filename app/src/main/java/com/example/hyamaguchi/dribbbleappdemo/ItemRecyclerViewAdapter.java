@@ -22,7 +22,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
 
         public ViewHolder(View v) {
             super(v);
-            mTextView = (TextView)v.findViewById(R.id.text_view);
+//            mTextView = (TextView)v.findViewById(R.id.text_view);
         }
     }
 
@@ -35,7 +35,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.my_text_view, parent, false);
+                .inflate(R.layout.item_cell, parent, false);
 
         // set the view's size, margins, paddings and layout parameters
 
@@ -49,7 +49,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset[position]);
+//        holder.mTextView.setText(mDataset[position]);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

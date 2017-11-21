@@ -49,10 +49,10 @@ class ItemListFragment : Fragment() {
         reccyclerView.setHasFixedSize(true)
         reccyclerView.layoutManager = LinearLayoutManager(activity)
 
-        println(myDataset)
+//        println(myDataset)
         for (i in myDataset.indices) {
             myDataset[i] = "Data_0" + i.toString()
-            println(myDataset[i])
+//            println(myDataset[i])
         }
 
         reccyclerView.adapter = ItemRecyclerViewAdapter(myDataset)
