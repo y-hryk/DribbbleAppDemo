@@ -10,8 +10,7 @@ import android.widget.TextView;
 /**
  * Created by h.yamaguchi on 2017/11/17.
  */
-
-public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerViewAdapter.ViewHolder> {
+class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerViewAdapter.ViewHolder> {
 
     private String[] mDataset = new String[20];
 
@@ -27,6 +26,7 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
     }
 
     public ItemRecyclerViewAdapter(String[] myDataset) {
+
         mDataset = myDataset;
     }
 
@@ -41,6 +41,8 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
 
 
         ViewHolder vh = new ViewHolder(view);
+
+
         return vh;
     }
 
