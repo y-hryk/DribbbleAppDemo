@@ -55,6 +55,10 @@ class ItemListFragment : Fragment() {
 //            println(myDataset[i])
         }
 
+
+        
+
+
         reccyclerView.adapter = ItemRecyclerViewAdapter(myDataset)
     }
 
