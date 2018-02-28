@@ -24,7 +24,7 @@ class PagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 //        args.putInt(SECTION_NUMBER, position)
 //        val fragment = mFragments[position]
 //        fragment.arguments = args
-        return ItemListFragment()
+        return ShotListFragment()
     }
 
 

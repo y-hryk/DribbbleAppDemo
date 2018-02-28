@@ -4,12 +4,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.hyamaguchi.dribbbleappdemo.network.ShotApi
 
-import kotlinx.android.synthetic.main.fragment_item_list.*
-
+import kotlinx.android.synthetic.main.fragment_shot_list.*
+import retrofit2.Retrofit
 
 /**
  * A simple [Fragment] subclass.
@@ -40,14 +42,14 @@ class ItemListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_item_list, container, false)
+        return inflater?.inflate(R.layout.fragment_shot_list, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        reccyclerView.setHasFixedSize(true)
-        reccyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
 
 //        println(myDataset)
         for (i in myDataset.indices) {
@@ -57,9 +59,9 @@ class ItemListFragment : Fragment() {
 
 
         
+        Log.d("","");
 
-
-        reccyclerView.adapter = ItemRecyclerViewAdapter(myDataset)
+        recyclerView.adapter = ItemRecyclerViewAdapter(myDataset)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -70,7 +72,18 @@ class ItemListFragment : Fragment() {
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+
         super.onActivityCreated(savedInstanceState)
+
+
+        var retrofit = Retrofit.Builder()
+                .baseUrl(ShotApi.END_POINT)
+                .build()
+
+        var api = retrofit.create<ShotApi>(ShotApi::class.java).fetchShots()
+
+//        api.enqueue()
+
     }
 
 //    override fun onAttach(context: Context?) {
