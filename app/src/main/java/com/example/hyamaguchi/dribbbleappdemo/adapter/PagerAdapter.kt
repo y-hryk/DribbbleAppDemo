@@ -1,11 +1,10 @@
-package com.example.hyamaguchi.dribbbleappdemo
+package com.example.hyamaguchi.dribbbleappdemo.adapter
 //import  com.example.hyamaguchi.dribbbleappdemo.ItemListFragment
-
-import android.os.Bundle
 
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import com.example.hyamaguchi.dribbbleappdemo.screen.ShotListFragment
 
 /**
  * Created by h.yamaguchi on 2017/11/17.

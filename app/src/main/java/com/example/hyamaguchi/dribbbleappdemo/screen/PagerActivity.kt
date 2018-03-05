@@ -1,8 +1,9 @@
-package com.example.hyamaguchi.dribbbleappdemo
+package com.example.hyamaguchi.dribbbleappdemo.screen
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.TabLayout
+import com.example.hyamaguchi.dribbbleappdemo.R
+import com.example.hyamaguchi.dribbbleappdemo.adapter.PagerAdapter
 import kotlinx.android.synthetic.main.activity_pager.*
 
 class PagerActivity : AppCompatActivity() {

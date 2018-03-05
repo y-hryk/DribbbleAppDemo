@@ -1,6 +1,7 @@
-package com.example.hyamaguchi.dribbbleappdemo;
+package com.example.hyamaguchi.dribbbleappdemo.screen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
+import com.example.hyamaguchi.dribbbleappdemo.R;
+import com.example.hyamaguchi.dribbbleappdemo.adapter.ShotRecyclerViewAdapter;
 import com.example.hyamaguchi.dribbbleappdemo.dummy.DummyContent.DummyItem;
+import com.example.hyamaguchi.dribbbleappdemo.model.Image;
 import com.example.hyamaguchi.dribbbleappdemo.model.Shot;
 import com.example.hyamaguchi.dribbbleappdemo.network.ShotApi;
 
@@ -33,6 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
+
 public class ShotListFragment extends Fragment {
 
     // TODO: Customize parameter argument names
@@ -41,11 +47,14 @@ public class ShotListFragment extends Fragment {
     private int mColumnCount = 1;
 //    private OnListFragmentInteractionListener mListener;
 
+    private ShotRecyclerViewAdapter mAdapter;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
     public ShotListFragment() {
+
     }
 
     // TODO: Customize parameter initialization
@@ -88,9 +97,26 @@ public class ShotListFragment extends Fragment {
         for (int i = 0; i < 10; i++) {
             Shot shot = new Shot();
             shot.title = "test";
+
+            Image image = new Image();
+            image.normal = "https://cdn.dribbble.com/users/997070/screenshots/4298220/housing-airbnb-booking-house.png";
+            shot.images = image;
             items.add(shot);
         }
-        recyclerView.setAdapter(new ShotRecyclerViewAdapter(items, null));
+
+        OnListFragmentInteractionListener listener = new OnListFragmentInteractionListener() {
+            @Override
+            public void onListFragmentInteraction(Shot shot) {
+                Log.d("debug","onListFragmentInteraction");
+                Intent intent = new Intent(getActivity(), ShotDetailActivity.class);
+                startActivity(intent);
+            }
+        };
+
+        mAdapter = new ShotRecyclerViewAdapter(getActivity(), listener);
+
+
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -122,6 +148,7 @@ public class ShotListFragment extends Fragment {
                 Log.d("debug", "通信終わった");
                 Log.d("debug", "item名" + items.get(0).user.avatarUrl);
                 Log.d("debug", "response: " + response.raw().toString());
+                mAdapter.setShots(items);
             }
 
             @Override
@@ -162,6 +189,6 @@ public class ShotListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Shot shot);
     }
 }

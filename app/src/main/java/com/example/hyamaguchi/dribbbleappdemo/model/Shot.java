@@ -20,4 +20,5 @@ public class Shot {
 
 //    @SerializedName("user")
     public User user;
+    public Image images;
 }

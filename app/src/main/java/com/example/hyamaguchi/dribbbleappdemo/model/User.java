@@ -1,5 +1,4 @@
 package com.example.hyamaguchi.dribbbleappdemo.model;
-
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -8,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
 
+    public int id;
     public String name;
     public String userName;
 
