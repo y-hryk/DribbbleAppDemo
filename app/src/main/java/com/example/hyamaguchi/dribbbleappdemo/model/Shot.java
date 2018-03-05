@@ -2,11 +2,13 @@ package com.example.hyamaguchi.dribbbleappdemo.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by h.yamaguchi on 2017/12/11.
  */
 
-public class Shot {
+public class Shot implements Serializable {
 
     public int id;
     public String title;

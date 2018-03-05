@@ -41,6 +41,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ShotListFragment extends Fragment {
 
+
+    public interface OnListFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onListFragmentInteraction(Shot shot);
+    }
+
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
@@ -87,28 +93,17 @@ public class ShotListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Log.d("debug", "onViewCreated");
+//        Log.d("debug", "onViewCreated");
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-        ArrayList<Shot> items = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Shot shot = new Shot();
-            shot.title = "test";
-
-            Image image = new Image();
-            image.normal = "https://cdn.dribbble.com/users/997070/screenshots/4298220/housing-airbnb-booking-house.png";
-            shot.images = image;
-            items.add(shot);
-        }
 
         OnListFragmentInteractionListener listener = new OnListFragmentInteractionListener() {
             @Override
             public void onListFragmentInteraction(Shot shot) {
                 Log.d("debug","onListFragmentInteraction");
                 Intent intent = new Intent(getActivity(), ShotDetailActivity.class);
+                intent.putExtra("shot", shot);
                 startActivity(intent);
             }
         };
@@ -175,20 +170,5 @@ public class ShotListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
 //        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(Shot shot);
     }
 }
