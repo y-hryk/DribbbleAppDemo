@@ -63,7 +63,7 @@ public class ShotRecyclerViewAdapter extends RecyclerView.Adapter<ShotRecyclerVi
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
-                    mListener.onListFragmentInteraction(holder.shot);
+                    mListener.onListFragmentInteraction(holder.shot, holder.mImageView);
                 }
             }
         });

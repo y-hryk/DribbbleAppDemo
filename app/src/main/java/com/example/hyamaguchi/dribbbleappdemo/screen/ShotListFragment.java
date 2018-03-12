@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 
 import com.example.hyamaguchi.dribbbleappdemo.R;
 import com.example.hyamaguchi.dribbbleappdemo.adapter.ShotRecyclerViewAdapter;
@@ -44,7 +46,7 @@ public class ShotListFragment extends Fragment {
 
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Shot shot);
+        void onListFragmentInteraction(Shot shot, ImageView imageView);
     }
 
     // TODO: Customize parameter argument names
@@ -100,11 +102,17 @@ public class ShotListFragment extends Fragment {
 
         OnListFragmentInteractionListener listener = new OnListFragmentInteractionListener() {
             @Override
-            public void onListFragmentInteraction(Shot shot) {
+            public void onListFragmentInteraction(Shot shot, ImageView imageView) {
                 Log.d("debug","onListFragmentInteraction");
+
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        getActivity(),
+                        imageView,
+                        "trasition_image" );
+
                 Intent intent = new Intent(getActivity(), ShotDetailActivity.class);
                 intent.putExtra("shot", shot);
-                startActivity(intent);
+                startActivity(intent, options.toBundle());
             }
         };
 
